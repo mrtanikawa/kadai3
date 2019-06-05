@@ -9,7 +9,7 @@ then
         echo "1つ目の自然数は$aです。"
 else
         echo "$aは自然数ではありません。プログラムを再実行してください。"
-        exit
+        exit 1
 fi
 
 echo "2つ目の自然数を入力してください。"
@@ -20,7 +20,7 @@ then
         echo "2つ目の自然数は$bです。"
 else
         echo "$bは自然数ではありません。プログラムを再実行してください。"
-        exit
+        exit 1
 fi
 
 
@@ -28,7 +28,7 @@ fi
 if [ $a -eq 0 -o $b -eq 0 ]
 then
         echo "2つの自然数のうちいずれかあるいは両方が0の場合、最大公約数は0です。"
-        exit
+        exit 0
 fi
 
 
@@ -49,6 +49,4 @@ do
                 break
         fi
         m=`expr $m - 1`
-
-
 done
