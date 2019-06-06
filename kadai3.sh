@@ -1,51 +1,51 @@
 #!/bin/sh
-  
-# 自然数チェック
-echo "1つ目の自然数を入力してください。"
-read a
 
-if expr "$a" : '[0-9]\+$' >/dev/null
+# 引数の数をチェック
+if [ $# -ne 2 ] 
 then
-        echo "1つ目の自然数は$aです。"
+	echo "入力が不足しています。もう一度実行してください。"
+	exit 1
+fi
+
+# 1つ目の入力チェック
+if expr "$1" : '[0-9]\+$' >/dev/null
+then
+	echo "1つ目の自然数は$1です。"
 else
-        echo "$aは自然数ではありません。プログラムを再実行してください。"
+	echo "1つ目の入力が自然数ではありません。もう一度実行してください。"
+	exit 1
+fi
+
+# 2つ目の入力チェック
+if  expr "$2" : '[0-9]\+$' >/dev/null
+then
+	echo "2つ目の自然数は$2です。"
+else
+        echo "2つ目の入力が自然数ではありません。もう一度実行してください。"
         exit 1
 fi
 
-echo "2つ目の自然数を入力してください。"
-read b
-
-if expr "$b" : '[0-9]\+$' >/dev/null
-then
-        echo "2つ目の自然数は$bです。"
-else
-        echo "$bは自然数ではありません。プログラムを再実行してください。"
-        exit 1
-fi
-
-
-# 0の場合
-if [ $a -eq 0 -o $b -eq 0 ]
+# いずれかあるいは両方の入力が0の場合
+if [ $1 -eq 0 -o $2 -eq 0 ]
 then
         echo "2つの自然数のうちいずれかあるいは両方が0の場合、最大公約数は0です。"
         exit 0
 fi
 
+# 2つの自然数の最大公約数を計算
+m=$1
 
-# 最大公約数計算
-m=$a
-
-if [ $b -lt $m ]
+if [ $2 -lt $m ]
 then
-        m=$b
+        m=$2
 fi
 
 while [ $m -ne 0 ] 
 do
-        x=`expr $a % $m`
-        y=`expr $b % $m`
+        x=`expr $1 % $m`
+        y=`expr $2 % $m`
         if [ $x -eq 0 -a $y -eq 0 ]
-        then echo "$aと$bの最大公約数は$mです。"
+        then echo "$1と$2の最大公約数は$mです。"
                 break
         fi
         m=`expr $m - 1`
