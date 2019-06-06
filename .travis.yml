@@ -2,4 +2,4 @@ language: bash
 script:
         - echo hello
         - echo Travis CI test in .travis.yml
-        - ./18445056_kadai3_tester.sh
+        - ./kadai3_tester.sh
